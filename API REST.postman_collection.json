@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "7a7287c7-bde1-42ed-a894-ffc65a787d9f",
+		"name": "API REST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47900931",
+		"_collection_link": "https://fernanda-s-team-1.postman.co/workspace/Team-Workspace~e77701d0-f5b6-438d-8ffe-ec7fc6c4563f/collection/47900931-7a7287c7-bde1-42ed-a894-ffc65a787d9f?action=share&source=collection_link&creator=47900931"
+	},
+	"item": [
+		{
+			"name": "lista",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8087/tarefas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"tarefas"
+					]
+				},
+				"description": "## GET /tarefas\n\nThis endpoint retrieves a list of tasks from the server. It is designed to provide clients with the current state of tasks available in the system. By calling this endpoint, users can access the details of all tasks, which can be useful for monitoring, management, or further processing of tasks within the application.\n\n### Request Parameters\n\nThis endpoint does not require any input parameters.\n\n### Response Structure\n\nOn a successful request, the server responds with a status code of **200** and a content type of **application/json**. The response body will be a JSON array containing the list of tasks. Each task object may include properties such as `id`, `dataEntrega`, `responsavel`, and `nomeDaTarefa`. If there are no tasks available, an empty array (`[]`) will be returned.\n\n### Example Response\n\n``` json\n[]\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "cadastrar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeDaTarefa\":\"Criação de site\",\r\n    \"dataEntrega\":\"2025-06-04\",\r\n    \"responsavel\":\"Isabela\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8087/tarefas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"tarefas"
+					]
+				},
+				"description": "## POST /tarefas\n\nThis endpoint allows clients to create a new task in the system. It is designed to accept task details and store them for future reference.\n\n### Request Headers\n\n- **Content-Type**: `application/json` - This header indicates that the request body format is JSON.\n    \n\n### Request Body\n\nThe request body must be in JSON format and should include the following parameters:\n\n- **nomeDaTarefa** (string): The name of the task to be created.\n    \n- **dataEntrega** (string): The due date for the task in `YYYY-MM-DD` format.\n    \n- **responsavel** (string): The name of the person responsible for the task.\n    \n\n**Example Request Body:**\n\n``` json\n{\n  \"nomeDaTarefa\": \"Criação de site\",\n  \"dataEntrega\": \"2025-06-04\",\n  \"responsavel\": \"Isabela\"\n}\n\n ```\n\n### Response Structure\n\nOn a successful request, the server responds with a status code of **200** and a content type of **application/json**. The response body will contain the details of the created task.\n\n**Expected Response Format:**\n\n``` json\n{\n  \"id\": 0,\n  \"dataEntrega\": \"\",\n  \"responsavel\": \"\",\n  \"nomeDaTarefa\": \"\"\n}\n\n ```\n\n### Error Handling\n\nIf the request fails due to validation errors or server issues, the server will return an appropriate error status code (e.g., **400** for bad requests) along with a message detailing the error.\n\n### Example Response\n\n``` json\n{\n  \"id\": 0,\n  \"dataEntrega\": \"\",\n  \"responsavel\": \"\",\n  \"nomeDaTarefa\": \"\"\n}\n\n ```\n\nThis documentation provides a comprehensive overview of how to use the POST /tarefas endpoint to create tasks in the system."
+			},
+			"response": []
+		},
+		{
+			"name": "atualizar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeDaTarefa\":\"Desenvolvimento da API\",\r\n    \"dataEntrega\":\"2025-12-12\",\r\n    \"responsavel\":\"Fernanda - RU: 4685607\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8087/tarefas/18",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"tarefas",
+						"18"
+					]
+				},
+				"description": "## PUT /tarefas/{id}\n\nThis endpoint updates an existing task identified by its unique ID. It allows clients to modify the details of a specific task in the system.\n\n### Request Parameters\n\n- **id** (path parameter): The unique identifier of the task to be updated.\n    \n\n### Request Body\n\nThe request body must be in JSON format and contain the following parameters:\n\n- **nomeDaTarefa** (string): The name of the task to be updated.\n    \n- **dataEntrega** (string): The due date for the task in YYYY-MM-DD format.\n    \n- **responsavel** (string): The name of the person responsible for the task.\n    \n\n### Example Request\n\n``` json\n{\n  \"nomeDaTarefa\": \"Desenvolvimento da API\",\n  \"dataEntrega\": \"2025-12-12\",\n  \"responsavel\": \"Fernanda - RU: 4685607\"\n}\n\n ```\n\n### Response Structure\n\nOn a successful request, the server responds with a status code of **200** and a content type of **application/json**. The response body will contain the updated task details.\n\n### Example Response\n\n``` json\n{\n  \"id\": 0,\n  \"dataEntrega\": \"\",\n  \"responsavel\": \"\",\n  \"nomeDaTarefa\": \"\"\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "deletar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeDaTarefa\":\"Desenvolvimento da API\",\r\n    \"dataEntrega\":\"2025-12-12\",\r\n    \"responsavel\":\"Fernanda RU 4685607\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8087/tarefas/18",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"tarefas",
+						"18"
+					]
+				},
+				"description": "## DELETE /tarefas/{id}\n\nThis endpoint is used to delete a specific task from the server based on the provided task ID. It is designed to allow clients to remove tasks that are no longer needed.\n\n### Request Parameters\n\n- **id** (path parameter): The unique identifier of the task to be deleted. In this case, the ID is `18`.\n    \n\n### Request Body\n\nThe request body for this DELETE operation can include the following parameters in JSON format:\n\n- **nomeDaTarefa** (text): The name of the task being deleted.\n    \n- **dataEntrega** (text): The due date of the task being deleted.\n    \n- **responsavel** (text): The person responsible for the task being deleted.\n    \n\n### Expected Response\n\nOn a successful request, the server responds with a status code of **200** and a content type of **text/xml**. The response body will be empty.\n\n### Notes\n\n- Ensure that the task ID provided in the URL corresponds to an existing task.\n    \n- Deleting a task is irreversible; once deleted, the task cannot be recovered."
+			},
+			"response": []
+		}
+	]
+}
